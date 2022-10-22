@@ -25,20 +25,17 @@ public class ValidParentheses {
             if (s.charAt(index)=='('||s.charAt(index)=='['||s.charAt(index)=='{') {
                myStack.push(s.charAt(index));
                 pushCount++;
-            } else if (myStack.size()>0){
-                if (s.charAt(index)==')' && myStack.peek() =='(') {myStack.pop();}
-                if (s.charAt(index)==']' && myStack.peek() =='[') {myStack.pop();}
-                if (s.charAt(index)=='}' && myStack.peek() =='{') {myStack.pop();}
+            } else {
                 popCount++;
+                if (myStack.size()>0){
+                    if (s.charAt(index)==')' && myStack.peek() =='(') {myStack.pop();}
+                    if (s.charAt(index)==']' && myStack.peek() =='[') {myStack.pop();}
+                    if (s.charAt(index)=='}' && myStack.peek() =='{') {myStack.pop();}
+                }
             }
         }
-        /**
-         * At the end stack must be empty and
-         * push count and pop count shall be equal and
-         * the number of push operations must be equal to string length divided by two, corner scenario ()))
-         */
 
-        if (myStack.size()==0 && pushCount >0 && pushCount==popCount && pushCount==(s.length()/2)){
+        if (myStack.size()==0 && pushCount >0 && pushCount==popCount ){
             return true;
         }
         return false;
